@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React,{useState} from 'react'
+import { Home,About,Contact,Resume,Portfolio } from './components'
+import {HomeIcon,UserIcon,PresentationChartLineIcon, PaperAirplaneIcon, BriefcaseIcon} from '@heroicons/react/24/solid'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const [view,setView] = useState('home')
   return (
-    <>
+    <div className='h-screen bg-red-900 flex flex-col items-center justify-center relative'>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {view == 'home' && <Home/>}
+        {view == 'about' && <About/>}
+        {view == 'contact' && <Contact/>}
+        {view == 'resume' && <Resume/>}
+        {view == 'portfolio' && <Portfolio/>}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='bg-yellow-600 text-black p-4 absolute top-[50%] bottom-[50%] right-4 h-fit grid gap-2 rounded-sm shadow-sm shadow-yellow-800'>
+        <HomeIcon 
+        onClick={() => setView('home')}
+        className='w-5 cursor-pointer active:text-white' />
+        <UserIcon 
+        onClick={() => setView('about')}
+        className='w-5 cursor-pointer active:text-white' />
+        <BriefcaseIcon 
+        onClick={() => setView('resume')}
+        className='w-5 cursor-pointer active:text-white' />
+        <PresentationChartLineIcon 
+        onClick={() => setView('portfolio')}
+        className='w-5 cursor-pointer active:text-white' />
+        <PaperAirplaneIcon 
+        onClick={() => setView('contact')}
+        className='w-5 cursor-pointer active:text-white' />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
